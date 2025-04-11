@@ -1,0 +1,223 @@
+.lost-items-page {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.lost-items-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lost-items-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.search-filter-section {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  width: 250px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.filter-controls select {
+  padding: 8px;
+  margin-left: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.items-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.time-group {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.lost-item-card {
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  width: 260px;
+  height: 360px; /* increased height */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+
+.lost-item-card:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.lost-item-card .card-front {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lost-item-card .card-back {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  transform: rotateY(180deg);
+  transition: transform 0.3s ease;
+  overflow: auto;
+}
+
+.lost-item-card:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+.lost-item-card:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.item-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+}
+
+.item-image img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
+.status-badge.pending {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.status-badge.requested {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.status-badge.completed {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.card-back .item-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.card-back .detail-labels span {
+  font-weight: bold;
+}
+
+.card-back .description {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+.card-back .handover-button {
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.card-back .handover-button:hover {
+  background-color: #31b0d5;
+}
+
+.handover-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-button,
+.submit-button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.submit-button {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #ec971f;
+}
+
+.submit-button:hover {
+  background-color: #4cae4c;
+}
