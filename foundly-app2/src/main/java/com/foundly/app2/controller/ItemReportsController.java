@@ -38,9 +38,8 @@ public class ItemReportsController {
     // Get an item report by ID
     @GetMapping("/{id}")
     public ResponseEntity<ItemReports> getItemReportById(@PathVariable Integer id) {
-        return itemReportsService.getItemReportById(id)
-                .map(itemReport -> new ResponseEntity<>(itemReport, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        ItemReports itemReport = itemReportsService.getItemReportById(id);
+        return new ResponseEntity<>(itemReport, HttpStatus.OK);
     }
 
     // Report a found item

@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.foundly.app2.exception.ItemNotFoundException;
 
 import com.foundly.app2.dto.FoundItemReportRequest;
 import com.foundly.app2.dto.LostItemReportRequest;
@@ -36,8 +39,10 @@ public class ItemReportsService {
     }
 
     // Get an item report by ID
-    public Optional<ItemReports> getItemReportById(Integer itemId) {
-        return itemReportsRepository.findById(itemId);
+    public ItemReports getItemReportById(Integer itemId) {
+        return itemReportsRepository.findById(itemId)
+               .orElseThrow((Supplier<? extends RuntimeException>) () -> 
+                   new ItemNotFoundException("Item not found with id: " + itemId));
     }
 
     // Filter item reports based on various criteria
@@ -74,10 +79,10 @@ public class ItemReportsService {
             if (categoryOptional.isPresent()) {
                 foundItem.setCategory(categoryOptional.get());
             } else {
-                throw new RuntimeException("Category not found for ID: " + request.getCategoryId());
+                throw new ItemNotFoundException("Category not found for ID: " + request.getCategoryId());
             }
         } else {
-            throw new RuntimeException("Category ID must be provided.");
+            throw new IllegalArgumentException("Category ID must be provided.");
         }
         //private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 

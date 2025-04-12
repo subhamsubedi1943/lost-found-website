@@ -2,6 +2,7 @@ package com.foundly.app2.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.foundly.app2.dto.UserLoginRequest;
 import com.foundly.app2.dto.UserRegistrationRequest;
 import com.foundly.app2.entity.User;
+import com.foundly.app2.exception.UserNotFoundException;
 import com.foundly.app2.repository.UserRepository;
 
 @Service
@@ -28,8 +30,10 @@ public class UserService {
     }
 
     // Get a user by ID
-    public Optional<User> getUserById(Integer userId) {
-        return userRepository.findById(userId);
+    public User getUserById(Integer userId) {
+        return userRepository.findById(userId)
+               .orElseThrow((Supplier<? extends RuntimeException>) () -> 
+                   new UserNotFoundException("User not found with id: " + userId));
     }
 
     // Get a user by email

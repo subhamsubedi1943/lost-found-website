@@ -1,0 +1,5 @@
+package com.foundly.app2.exception;
+
+public class TransactionNotFoundException {
+
+}
