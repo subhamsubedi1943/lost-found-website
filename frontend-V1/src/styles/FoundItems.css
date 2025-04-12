@@ -56,18 +56,20 @@
     padding-bottom: 5px;
   }
   
-  .items-grid {
+.items-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px; /* Increased from 20px */
+    margin: 20px 0; /* Added vertical margin */
   }
-  
-  .found-item-card {
+
+.found-item-card {
     width: 280px;
     height: 350px;
     perspective: 1000px;
     position: relative;
-  }
+    margin: 10px; /* Added margin around each card */
+}
   
   .card-front, .card-back {
     position: absolute;
